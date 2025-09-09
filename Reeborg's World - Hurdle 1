@@ -1,0 +1,35 @@
+# Reeborgs World - Hurdle 1
+## Using Functions
+
+
+def turn_right():
+  turn_left()
+  turn_left()
+  turn_left()
+  
+def turn_right_move():
+  turn_right()
+  move()
+  
+def turn_right_move_twice():
+  turn_right_move()
+  turn_right_move()
+  
+
+def turn_left_move():
+  turn_left()
+  move()
+
+def one_hurdle():
+  turn_left_move()
+  turn_right_move_twice()
+  turn_left_move()
+
+move()
+one_hurdle()
+one_hurdle()
+one_hurdle()
+one_hurdle()
+one_hurdle()
+turn_left_move()
+turn_right_move_twice()
