@@ -1,0 +1,41 @@
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+
+def jump():
+    turn_left()
+    
+    while wall_on_right():
+        move()
+        
+    turn_right()
+    move()
+    turn_right()
+    
+    while front_is_clear():
+        move()
+    
+    turn_left()
+       
+while not at_goal():
+    if wall_in_front():
+        jump()
+    else:
+        move()
+"""
+
+Challenge is to solve for Variable hurdle heights.
+All the logic is in the jump() function.
+You keep checking if you have wall on the right, and if so, keep moving forward.
+If not turn right, move, turn right again and move downward.
+If you reach a wall at the end, thenn turn left and start the whole loop again.
+
+Initially, you check to see if there is a wall in front.
+If not, you move
+
+
+"""
+
+
+
