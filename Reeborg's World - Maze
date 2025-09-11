@@ -1,0 +1,25 @@
+# Reeborg's World - Maze
+
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+
+while not at_goal():
+    if right_is_clear():
+        turn_right()
+        move()
+    elif front_is_clear():
+        move()
+    else:
+       turn_left()
+
+"""
+
+The secret is to have Reeborg follow along the right edge of the maze, turning right if it can,
+going straight ahead if it can’t turn right, or turning left as a last resort.
+
+If right is clear, then Reeborg moves. You then use the front_is_clear to see if he comes up against a wall.
+If so, then he turns left and the loop starts from the beginning.
+
+"""
