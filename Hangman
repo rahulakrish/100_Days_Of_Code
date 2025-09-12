@@ -1,0 +1,105 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/rahulakrish/100_Days_Of_Code/blob/main/Hangman\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Hangman"
+      ],
+      "metadata": {
+        "id": "SEtw39eW21aI"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random"
+      ],
+      "metadata": {
+        "id": "WPpFDcOJ23vh"
+      },
+      "execution_count": 3,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "word_list = [\"apple\", \"book\", \"desk\", \"pen\", \"cat\", \"dog\", \"tree\", \"house\", \"car\", \"phone\",\n",
+        "             \"computer\", \"laptop\", \"keyboard\", \"mouse\", \"chair\", \"table\", \"door\", \"window\", \"wall\", \"floor\"]\n",
+        "\n",
+        "chosen_word = list(random.choice(word_list))\n",
+        "\n",
+        "print(chosen_word)"
+      ],
+      "metadata": {
+        "id": "8nbTI9Zg3ejW",
+        "outputId": "a6732051-7955-4a8d-8a7e-ba6961a63805",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['f', 'l', 'o', 'o', 'r']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "user_input = input(\"Guess a letter: \").lower()\n",
+        "\n",
+        "if user_input in chosen_word:\n",
+        "  print(\"Right\")\n",
+        "else:\n",
+        "  print(\"Wrong\")\n"
+      ],
+      "metadata": {
+        "id": "7kp5pcR53qmk",
+        "outputId": "29dc5402-a4f6-4691-c8be-ccfc740b3450",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Guess a letter: u\n",
+            "Wrong\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colab",
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
