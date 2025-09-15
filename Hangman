@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyPJvI3RhLqTuZWbHGdjfRhs",
+      "authorship_tag": "ABX9TyOwRcByL2ch+yHABaf/XNuq",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -43,7 +43,7 @@
       "metadata": {
         "id": "9Zqo5kJm4GbC"
       },
-      "execution_count": 103,
+      "execution_count": 117,
       "outputs": []
     },
     {
@@ -57,7 +57,7 @@
       "metadata": {
         "id": "aw7qrLJY2dnr"
       },
-      "execution_count": 104,
+      "execution_count": 118,
       "outputs": []
     },
     {
@@ -78,55 +78,18 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "LF-BH7_L3eV7",
-        "outputId": "112b4112-f64a-4bae-ebca-4f2a0b53befa"
+        "outputId": "56a89907-98d0-4f5d-dc3d-1c0769aaad8e"
       },
-      "execution_count": 109,
+      "execution_count": 119,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "amuse\n",
+            "berserk\n",
             "\n",
             "\n",
-            "['a', 'm', 'u', 's', 'e']\n"
-          ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "#ask user to guess a letter\n",
-        "guess = input('Pick a letter\\n').lower()\n",
-        "\n",
-        "#check if guess exists\n",
-        "for letter in letter_list:\n",
-        "  if guess == letter:\n",
-        "    print('Right')\n",
-        "  else:\n",
-        "    print('Wrong')"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        },
-        "id": "vorf1Gjs4J1F",
-        "outputId": "8218c726-c3f3-40ca-f4a9-dd18598c6745"
-      },
-      "execution_count": 106,
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "Pick a letter\n",
-            "x\n",
-            "Wrong\n",
-            "Wrong\n",
-            "Wrong\n",
-            "Wrong\n",
-            "Wrong\n"
+            "['b', 'e', 'r', 's', 'e', 'r', 'k']\n"
           ]
         }
       ]
@@ -151,17 +114,42 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "ud6Of6464_YK",
-        "outputId": "80edcdba-1d9c-4cea-ba47-f42bec6495ba"
+        "outputId": "3ca08212-81fd-4c32-ceea-368504f3b0cf"
       },
-      "execution_count": 107,
+      "execution_count": 120,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "The number of letters in the word is 5\n",
+            "The number of letters in the word is 7\n",
             "\n",
-            "['_', '_', '_', '_', '_']\n"
+            "['_', '_', '_', '_', '_', '_', '_']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#ask user to guess a letter\n",
+        "guess = input('Pick a letter\\n').lower()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vorf1Gjs4J1F",
+        "outputId": "01b31490-e27e-4cb4-b2e2-eaa02ca7b934"
+      },
+      "execution_count": 130,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Pick a letter\n",
+            "e\n"
           ]
         }
       ]
@@ -187,15 +175,44 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "eYUVpC62_WAS",
-        "outputId": "8774749d-9840-47a9-ef7c-2faf46660278"
+        "outputId": "a3105f8d-8bb6-49bc-b95c-41b43253e63d"
       },
-      "execution_count": 111,
+      "execution_count": 131,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "['_', '_', '_', '_', '_']\n"
+            "['_', 'e', '_', '_', 'e', '_', '_']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "while guess in letter_list:\n",
+        "  guess = input('Pick next letter\\n').lower()\n",
+        "  if guess in letter_list:\n",
+        "else:\n",
+        "  print(f'The letter {guess} is not in the word\\n')\n",
+        "  print(list(display))\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "50mHBtaTKYc2",
+        "outputId": "722a8f8a-b1e5-40ed-ca86-8860653185f6"
+      },
+      "execution_count": 133,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The letter f is not in the word\n",
+            "['_', 'e', '_', '_', 'e', '_', '_']\n"
           ]
         }
       ]
@@ -204,9 +221,9 @@
       "cell_type": "code",
       "source": [],
       "metadata": {
-        "id": "WVYrN0N6Gf3Z"
+        "id": "nZM8DAJGKu9n"
       },
-      "execution_count": 108,
+      "execution_count": null,
       "outputs": []
     }
   ]
