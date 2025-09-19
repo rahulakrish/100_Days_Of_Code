@@ -1,0 +1,279 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/rahulakrish/100_Days_Of_Code/blob/main/Hangman\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# for picking random words from the list\n",
+        "import random\n",
+        "\n",
+        "\n",
+        "# list of words\n",
+        "word_list = ['wrist','heal','berserk','front','partner','apple',\n",
+        "                     'strong','subtract','inquisitive','distinct','development','tenuous','amuse']\n",
+        "\n",
+        "#picking a random word\n",
+        "chosen_word = random.choice(word_list)\n",
+        "print(chosen_word)"
+      ],
+      "metadata": {
+        "id": "Xow7pAD7dJoG",
+        "outputId": "7ee7059b-ec40-4f66-fca7-cd64156accb7",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 27,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "strong\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "stages = [r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "      |\n",
+        "      |\n",
+        "      |\n",
+        "      |\n",
+        "=========''',\n",
+        "r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "  O   |\n",
+        "      |\n",
+        "      |\n",
+        "      |\n",
+        "=========''',\n",
+        "r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "  O   |\n",
+        "  |   |\n",
+        "      |\n",
+        "      |\n",
+        "=========''',\n",
+        "r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "  O   |\n",
+        " /|   |\n",
+        "      |\n",
+        "      |\n",
+        "=========''',\n",
+        "r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "  O   |\n",
+        " /|\\  |\n",
+        "      |\n",
+        "      |\n",
+        "=========''',\n",
+        "r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "  O   |\n",
+        " /|\\  |\n",
+        " /    |\n",
+        "      |\n",
+        "=========''',\n",
+        "r'''\n",
+        "  +---+\n",
+        "  |   |\n",
+        "  O   |\n",
+        " /|\\  |\n",
+        " / \\  |\n",
+        "      |\n",
+        "=========''']"
+      ],
+      "metadata": {
+        "id": "zJnkFfs7dbjj"
+      },
+      "execution_count": 29,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# initiating blanks and telling the user the number of letters in the word\n",
+        "\n",
+        "placeholder = \"\"\n",
+        "\n",
+        "word_length = len(chosen_word)\n",
+        "\n",
+        "for _ in range(word_length):\n",
+        "  placeholder += \"_\"\n",
+        "\n",
+        "print (f'Length of word is {len(chosen_word)}\\n')\n",
+        "\n",
+        "print(placeholder)"
+      ],
+      "metadata": {
+        "id": "0ND6T8sldL6K",
+        "outputId": "e9b1a422-0d33-4b05-d6bc-7f33dfedd171",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Length of word is 6\n",
+            "\n",
+            "______\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "lives = 6\n",
+        "guess_number = 0\n",
+        "\n",
+        "#while loop setup\n",
+        "game_over = False # is the flag for ending the while loop\n",
+        "correct_letters = [] # is used to store the guesses for the display to have all the guesses each time a guess is correct\n",
+        "\n",
+        "while game_over == False:\n",
+        "  guess = input(\"Guess a letter\\n\").lower() #asking the user to guess\n",
+        "\n",
+        "  print(\"\\n\")\n",
+        "\n",
+        "  display = \"\"\n",
+        "\n",
+        "  for letter in chosen_word:\n",
+        "    if letter == guess:\n",
+        "      display += letter # this will replace the _ with the guess if it is correct\n",
+        "      correct_letters.append(guess)\n",
+        "    elif letter in correct_letters: # if display has previous correct guesses, then the next correct guess is added to the display.\n",
+        "    # otherwise dispaly will just get overwritten with the next correct guess\n",
+        "      display += letter\n",
+        "    else:\n",
+        "      display += \"_\" # if the guess is wrong\n",
+        "\n",
+        "  if guess not in correct_letters:\n",
+        "     guess_number += 1\n",
+        "     lives = lives - 1\n",
+        "     print(stages[guess_number])\n",
+        "\n",
+        "\n",
+        "  print(\"\\n\")\n",
+        "\n",
+        "  if \"_\" not in display: # if you have no more blanks, that means nothing more left to guess\n",
+        "    game_over = True\n",
+        "    print(\"You win!\")"
+      ],
+      "metadata": {
+        "id": "cb6Xt-UMdSB4",
+        "outputId": "d3bb5b9c-bda0-4483-b915-b8d4d1db9a99",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 42,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Guess a letter\n",
+            "a\n",
+            "\n",
+            "\n",
+            "\n",
+            "  +---+\n",
+            "  |   |\n",
+            "  O   |\n",
+            "      |\n",
+            "      |\n",
+            "      |\n",
+            "=========\n",
+            "\n",
+            "\n",
+            "Guess a letter\n",
+            "s\n",
+            "\n",
+            "\n",
+            "\n",
+            "\n",
+            "Guess a letter\n",
+            "t\n",
+            "\n",
+            "\n",
+            "\n",
+            "\n",
+            "Guess a letter\n",
+            "r\n",
+            "\n",
+            "\n",
+            "\n",
+            "\n",
+            "Guess a letter\n",
+            "o\n",
+            "\n",
+            "\n",
+            "\n",
+            "\n",
+            "Guess a letter\n",
+            "n\n",
+            "\n",
+            "\n",
+            "\n",
+            "\n",
+            "Guess a letter\n",
+            "g\n",
+            "\n",
+            "\n",
+            "\n",
+            "\n",
+            "You win!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "hIj9vsMbgW4b"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colab",
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
