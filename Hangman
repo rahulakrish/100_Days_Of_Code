@@ -11,6 +11,15 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "source": [
+        "# Hangman"
+      ],
+      "metadata": {
+        "id": "jomkM4ozDSLq"
+      }
+    },
+    {
       "cell_type": "code",
       "source": [
         "# for picking random words from the list\n",
@@ -26,19 +35,19 @@
         "print(chosen_word)"
       ],
       "metadata": {
-        "id": "Xow7pAD7dJoG",
-        "outputId": "7ee7059b-ec40-4f66-fca7-cd64156accb7",
         "colab": {
           "base_uri": "https://localhost:8080/"
-        }
+        },
+        "id": "5IBiBrSuzykn",
+        "outputId": "d0865b60-083e-4c7a-9479-5610be48a4b8"
       },
-      "execution_count": 27,
+      "execution_count": 38,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "strong\n"
+            "tenuous\n"
           ]
         }
       ]
@@ -46,6 +55,8 @@
     {
       "cell_type": "code",
       "source": [
+        "# hangman stages\n",
+        "\n",
         "stages = [r'''\n",
         "  +---+\n",
         "  |   |\n",
@@ -101,12 +112,12 @@
         " /|\\  |\n",
         " / \\  |\n",
         "      |\n",
-        "=========''']"
+        "=========''']\n"
       ],
       "metadata": {
-        "id": "zJnkFfs7dbjj"
+        "id": "HS95nEumz1uG"
       },
-      "execution_count": 29,
+      "execution_count": 39,
       "outputs": []
     },
     {
@@ -123,24 +134,24 @@
         "\n",
         "print (f'Length of word is {len(chosen_word)}\\n')\n",
         "\n",
-        "print(placeholder)"
+        "print(placeholder)\n"
       ],
       "metadata": {
-        "id": "0ND6T8sldL6K",
-        "outputId": "e9b1a422-0d33-4b05-d6bc-7f33dfedd171",
         "colab": {
           "base_uri": "https://localhost:8080/"
-        }
+        },
+        "id": "tZBFJyFpz6z1",
+        "outputId": "2407ec87-1f51-41d8-9370-1309ebc7ebe0"
       },
-      "execution_count": 28,
+      "execution_count": 40,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Length of word is 6\n",
+            "Length of word is 7\n",
             "\n",
-            "______\n"
+            "_______\n"
           ]
         }
       ]
@@ -148,117 +159,58 @@
     {
       "cell_type": "code",
       "source": [
-        "lives = 6\n",
-        "guess_number = 0\n",
-        "\n",
         "#while loop setup\n",
+        "lives = 6\n",
+        "\n",
         "game_over = False # is the flag for ending the while loop\n",
         "correct_letters = [] # is used to store the guesses for the display to have all the guesses each time a guess is correct\n",
         "\n",
         "while game_over == False:\n",
-        "  guess = input(\"Guess a letter\\n\").lower() #asking the user to guess\n",
+        "    guess = input(\"Guess a letter\\n\").lower() #asking the user to guess\n",
         "\n",
-        "  print(\"\\n\")\n",
+        "    print(\"\\n\")\n",
         "\n",
-        "  display = \"\"\n",
+        "    display = \"\"\n",
         "\n",
-        "  for letter in chosen_word:\n",
-        "    if letter == guess:\n",
-        "      display += letter # this will replace the _ with the guess if it is correct\n",
-        "      correct_letters.append(guess)\n",
-        "    elif letter in correct_letters: # if display has previous correct guesses, then the next correct guess is added to the display.\n",
-        "    # otherwise dispaly will just get overwritten with the next correct guess\n",
-        "      display += letter\n",
+        "    if guess in correct_letters:\n",
+        "        print(f\"You've guessed '{guess}' before. Try again!\")\n",
+        "        print(stages[6-lives])\n",
+        "        print(display)\n",
+        "\n",
+        "    for letter in chosen_word:\n",
+        "        if letter == guess:\n",
+        "            display += letter # this will replace the _ with the guess if it is correct\n",
+        "            correct_letters.append(guess)\n",
+        "        elif letter in correct_letters: # if display has previous correct guesses, then the next correct guess is added to the display.\n",
+        "            display += letter\n",
+        "        else:\n",
+        "            display += \"_\" # if the guess is wrong\n",
+        "\n",
+        "    if guess not in correct_letters:\n",
+        "        lives = lives - 1\n",
+        "        print(f'Wrong! You have {lives} lives left')\n",
+        "        print(stages[6-lives])\n",
+        "        print(display)\n",
         "    else:\n",
-        "      display += \"_\" # if the guess is wrong\n",
+        "        print(f'Correct! You have {lives} left. Keep guessing!')\n",
+        "        print(stages[6-lives])\n",
+        "        print(display)\n",
         "\n",
-        "  if guess not in correct_letters:\n",
-        "     guess_number += 1\n",
-        "     lives = lives - 1\n",
-        "     print(stages[guess_number])\n",
+        "    print(\"\\n\")\n",
         "\n",
-        "\n",
-        "  print(\"\\n\")\n",
-        "\n",
-        "  if \"_\" not in display: # if you have no more blanks, that means nothing more left to guess\n",
-        "    game_over = True\n",
-        "    print(\"You win!\")"
+        "    if \"_\" not in display: # if you have no more blanks, that means nothing more left to guess\n",
+        "        game_over = True\n",
+        "        print(\"You win!\")\n",
+        "    else:\n",
+        "        if lives == 0:\n",
+        "            game_over = True\n",
+        "            print(\"No more lives left.You lose!\")\n",
+        "            print(f'The word was \"{chosen_word}\" ')"
       ],
       "metadata": {
-        "id": "cb6Xt-UMdSB4",
-        "outputId": "d3bb5b9c-bda0-4483-b915-b8d4d1db9a99",
-        "colab": {
-          "base_uri": "https://localhost:8080/"
-        }
+        "id": "eGxtWL8e0C4N"
       },
-      "execution_count": 42,
-      "outputs": [
-        {
-          "output_type": "stream",
-          "name": "stdout",
-          "text": [
-            "Guess a letter\n",
-            "a\n",
-            "\n",
-            "\n",
-            "\n",
-            "  +---+\n",
-            "  |   |\n",
-            "  O   |\n",
-            "      |\n",
-            "      |\n",
-            "      |\n",
-            "=========\n",
-            "\n",
-            "\n",
-            "Guess a letter\n",
-            "s\n",
-            "\n",
-            "\n",
-            "\n",
-            "\n",
-            "Guess a letter\n",
-            "t\n",
-            "\n",
-            "\n",
-            "\n",
-            "\n",
-            "Guess a letter\n",
-            "r\n",
-            "\n",
-            "\n",
-            "\n",
-            "\n",
-            "Guess a letter\n",
-            "o\n",
-            "\n",
-            "\n",
-            "\n",
-            "\n",
-            "Guess a letter\n",
-            "n\n",
-            "\n",
-            "\n",
-            "\n",
-            "\n",
-            "Guess a letter\n",
-            "g\n",
-            "\n",
-            "\n",
-            "\n",
-            "\n",
-            "You win!\n"
-          ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [],
-      "metadata": {
-        "id": "hIj9vsMbgW4b"
-      },
-      "execution_count": null,
+      "execution_count": 44,
       "outputs": []
     }
   ],
