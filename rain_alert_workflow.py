@@ -20,16 +20,16 @@ for i in range(min(4, len(weather_data['list']))):
 
 
 def send_alert():
-    from_email = os.environ.get('FROM_EMAIL')
-    to_email = os.environ.get('TO_EMAIL')
-    password = os.environ.get('PASSWORD')
+    FROM_EMAIL = os.environ.get('FROM_EMAIL')
+    To_EMAIL = os.environ.get('TO_EMAIL')
+    PASSWORD = os.environ.get('PASSWORD')
 
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
         connection.starttls()
-        connection.login(user=from_email, password=password)
+        connection.login(user=FROM_EMAIL, password=PASSWORD)
         connection.sendmail(
-            from_addr=from_email,
-            to_addr=to_email,
+            from_addr=FROM_EMAIL,
+            to_addr=To_EMAIL,
             msg="Subject: Rain Alert\n\nForecast is for rain. Don't forget to take an umbrella."
         )
 
@@ -41,10 +41,10 @@ def all_clear():
 
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
         connection.starttls()
-        connection.login(user=from_email, password=password)
+        connection.login(user=FROM_EMAIL, password=PASSWORD)
         connection.sendmail(
-            from_addr=from_email,
-            to_addr=to_email,
+            from_addr=FROM_EMAIL,
+            to_addr=TO_EMAIL,
             msg="Subject: All clear\n\nNo rain forecast for today."
         )
 
