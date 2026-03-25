@@ -16,7 +16,7 @@ import smtplib
 
 
 #retrieve environment variables
-weather_api_key = os.environ.get('OWM_API_KEY')
+OWM_API_KEY = os.environ.get('OWM_API_KEY')
 
 
 # In[3]:
@@ -31,7 +31,7 @@ long = -87.682083
 
 
 #getting the data from the open weather API
-api_call= f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={long}&appid={weather_api_key}&units=metric"
+api_call= f"https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={long}&appid={OWM_API_KEY}&units=metric"
 response = requests.get(url=api_call)
 weather_data = response.json()
 
