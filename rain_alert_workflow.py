@@ -21,7 +21,7 @@ for i in range(min(4, len(weather_data['list']))):
 
 def send_alert():
     FROM_EMAIL = os.environ.get('FROM_EMAIL')
-    To_EMAIL = os.environ.get('TO_EMAIL')
+    TO_EMAIL = os.environ.get('TO_EMAIL')
     PASSWORD = os.environ.get('PASSWORD')
 
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
@@ -35,9 +35,9 @@ def send_alert():
 
 
 def all_clear():
-    from_email = os.environ.get('FROM_EMAIL')
-    to_email = os.environ.get('TO_EMAIL')
-    password = os.environ.get('PASSWORD')
+    FROM_EMAIL = os.environ.get('FROM_EMAIL')
+    TO_EMAIL = os.environ.get('TO_EMAIL')
+    PASSWORD = os.environ.get('PASSWORD')
 
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
         connection.starttls()
