@@ -29,7 +29,7 @@ def send_alert():
         connection.login(user=FROM_EMAIL, password=PASSWORD)
         connection.sendmail(
             from_addr=FROM_EMAIL,
-            to_addr=To_EMAIL,
+            to_addrs=To_EMAIL,
             msg="Subject: Rain Alert\n\nForecast is for rain. Don't forget to take an umbrella."
         )
 
@@ -44,7 +44,7 @@ def all_clear():
         connection.login(user=FROM_EMAIL, password=PASSWORD)
         connection.sendmail(
             from_addr=FROM_EMAIL,
-            to_addr=TO_EMAIL,
+            to_addrs=TO_EMAIL,
             msg="Subject: All clear\n\nNo rain forecast for today."
         )
 
