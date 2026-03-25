@@ -53,14 +53,14 @@ for i in range(0, 4):
         
         
 def send_alert():
-    from_email = os.environ,get('FROM_EMAIL')
+    from_email = os.environ.get('FROM_EMAIL')
     to_email = os.environ.get('TO_EMAIL')
     password = os.environ.get('PASSWORD')
     
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
         connection.starttls()
         connection.login(user=from_email, password=password)
-        connection.sendemail(from_addr = from_email,
+        connection.sendmail(from_addr = from_email,
                              to_addr = to_email,
                              msg = "Subject: Rain Alert\n\nForecast is for rain. Don't forget to take an umbrella")
         
@@ -72,7 +72,7 @@ def all_clear():
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
         connection.starttls()
         connection.login(user=from_email, password=password)
-        connection.sendemail(from_addr = from_email,
+        connection.sendmail(from_addr = from_email,
                              to_addr = to_email,
                              msg = "Subject: All clear\n\nNo rain forecast for today.")
         
