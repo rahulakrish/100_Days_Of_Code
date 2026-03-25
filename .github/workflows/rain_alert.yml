@@ -8,19 +8,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.11"
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
 
-    - name: Install dependencies
-      run: |
-        pip install requests json os smtplib   
+      - name: Install dependencies
+        run: |
+          pip install requests 
        
 
-    - name: run rain_alert script
-      env:
-          weather_api_key = os.environ.get('OWM_API_KEY')
-      run: rain_alert_workflow
+      - name: run rain_alert script
+        env:
+          weather_api_key: ${{ secrets.OWM_API_KEY}}
+        run: python rain_alert_workflow.py
