@@ -22,5 +22,5 @@ jobs:
 
     - name: run rain_alert script
       env:
-          weather_api_key = os.environ.get('OWM_API_KEY)
+          weather_api_key = os.environ.get('OWM_API_KEY')
       run: rain_alert_workflow
