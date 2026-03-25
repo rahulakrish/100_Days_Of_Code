@@ -22,5 +22,5 @@ jobs:
 
       - name: run rain_alert script
         env:
-          weather_api_key: ${{ secrets.OWM_API_KEY}}
+          OWM_API_KEY: ${{ secrets.OWM_API_KEY}}
         run: python rain_alert_workflow.py
