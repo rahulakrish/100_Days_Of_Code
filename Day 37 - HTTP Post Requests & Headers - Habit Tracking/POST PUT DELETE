@@ -1,0 +1,4 @@
+GET - request information/data from an external service
+POST - give data to an external service and not really interested in the response.
+       eg: Create data in Google Sheets using Google Sheets API (or) use Twitter API to tweet something.
+PUT - update data in the external servicce
