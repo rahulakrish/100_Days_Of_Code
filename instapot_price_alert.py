@@ -6,9 +6,25 @@ from selenium.webdriver.common.by import By
 import smtplib
 import os
 
+from selenium.webdriver.chrome.options import Options
 
-#create an instance of the webdriver
-driver = webdriver.Edge()
+
+#set options for the chrome browser
+options = Options()
+
+#make the browser run invisibly, instead of launching a real webpage.
+#with headless mode, no browser window appears, everyhting runs in the b'ground and also uses less memory
+options.add_argument('--headless')  
+
+#prevents Linux permission issues
+options.add_argument('--no-sandbox')
+
+#for stability
+options.add_argument('--disable-dev-shm-usage')
+
+
+#create an instance of the webdriver with the select options
+driver = webdriver.Chrome(options=options)
 
 #open the web page
 driver.get('https://appbrewery.github.io/instant_pot/')
