@@ -1,0 +1,31 @@
+name: instapot price alert
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron: '30 10 * * *' 
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests 
+       
+
+      - name: run instapot price alert script
+        env:
+            FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+            TO_EMAIL: ${{ secrets.TO_EMAIL }}
+            PASSWORD: ${{ secrets.PASSWORD }}
+            OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
+        run: python instapot_price_alert.py
