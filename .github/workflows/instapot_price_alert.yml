@@ -17,9 +17,12 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Install dependencies
         run: |
-          pip install selenium webdriver-manager
+          pip install selenium
        
 
       - name: run instapot price alert script
