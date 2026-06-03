@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install selenium 
+          pip install selenium webdriver-manager
        
 
       - name: run instapot price alert script
