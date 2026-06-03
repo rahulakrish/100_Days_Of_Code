@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests 
+          pip install selenium 
        
 
       - name: run instapot price alert script
@@ -27,5 +27,4 @@ jobs:
             FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
             TO_EMAIL: ${{ secrets.TO_EMAIL }}
             PASSWORD: ${{ secrets.PASSWORD }}
-            OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
         run: python instapot_price_alert.py
