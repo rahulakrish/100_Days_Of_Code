@@ -54,7 +54,7 @@ def send_alert():
         connection.login(user=from_email, password=password)
         connection.sendmail(from_addr=from_email,
                             to_addrs= to_email,
-                            msg='Instapot price alert\n\nPrice below $100\nTime to buy!')
+                            msg='Subject: Instapot price alert\n\nPrice below $100\nTime to buy!')
         
 if final_price < 100:
     send_alert()
