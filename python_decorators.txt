@@ -1,0 +1,113 @@
+Python Decorators:
+Before you get into decorators, first know about the different capabilities of functions:
+
+Capability 1:
+FUNCTIONS ARE OBJECTS
+def greet():
+    print("Hello!")
+
+print(greet)
+
+Output:
+<function greet at 0x...>
+
+You can assign this to another variable:
+say_hello = greet
+say_hello()
+
+Output:
+Hello!
+
+Notice there are no () when assigning, because greet() would run the function immediately
+
+CAPABILITY 2:
+FUNCTIONS CAN TAKE OTHER FUNCTIONS
+
+def greet():
+    print('Hello')
+
+def run_function(function):
+    function()
+
+run_function(greet)
+
+Output:
+Hello!
+
+Again, notice how you are not using () when you pass greet. If you did, then it will run immediately.
+
+
+CAPABILITY 3:
+FUNCTIONS CAN RETURN FUNCTIONS
+This is where decorators begin
+
+def outer():
+    
+    def inner():
+        print('Inside inner')
+
+    return inner
+
+my_function = outer()
+my_function()
+
+Output:
+Inside inner
+
+What happened?
+
+outer() creates inner.
+It returns the function itself.
+my_function now refers to inner.
+when you call my_function(), it runs inner()
+
+WRAPPING ANOTHER FUNCTION:
+Suppose you want something to happen before and after you run a function:
+
+def wrapper(func):
+
+    def inner():
+        print('before')
+
+     func()
+
+        print('after')
+
+    return inner
+
+Now, define a function:
+
+def greet():
+    print('hello')
+
+Now, wrap it:
+
+new_greet = wrapper(greet)
+new_greet()
+
+Think about this now:
+you are going thru all 3 capabilities:
+
+you are passing the greet function into the wrapper function(FUNCTIONS CAN RETURN FUNCTIONS)
+inside the wrapper function, you are running another function(FUNCTIONS CAN TAKE OTHER FUNCTIONS)
+you are assigning the wrapper function to a variable (FUNCTIONS ARE OBJECTS)
+the variable 'inherits' function capabilities, hence you can call it using ().
+
+
+Original function
+       │
+       ▼
+Decorator
+       │
+       ▼
+New function
+       │
+       ▼
+You call the new function
+       │
+       ├── do something before
+       ├── call original function
+       └── do something after
+
+
+A decorator should return a new function, not execute the function immediately

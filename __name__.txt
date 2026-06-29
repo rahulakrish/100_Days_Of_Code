@@ -1,0 +1,52 @@
+you often come acrooss the follwoing piece of code in python:
+
+if __name__ = '__main__':
+    main()
+
+
+__name__ is a built in Python attribute.
+If the source file is executed as the main program, the __name__ attribute is set to '__main__'
+However if you import the script as a module, then __name__ is set to the module's name 
+
+Example:
+
+# File1.py 
+print ("File1 __name__ = %s" %__name__) 
+
+if __name__ == "__main__": 
+    print ("File1 is being run directly")
+else: 
+    print ("File1 is being imported")
+
+Now the interpreter is given the command to run File1.py.
+python File1.py
+
+Output :
+File1 __name__ = __main__
+File1 is being run directly
+
+# File2.py 
+import File1 
+print ("File2 __name__ = %s" %__name__) 
+
+if __name__ == "__main__": 
+    print ("File2 is being run directly")
+else: 
+    print ("File2 is being imported")
+
+And then File2.py is run.
+python File2.py
+
+Output :
+File1 __name__ = File1
+File1 is being imported
+
+File2 __name__ = __main__
+File2 is being run directly
+
+References:
+https://www.freecodecamp.org/news/whats-in-a-python-s-name-506262fe61e8/
+
+https://docs.python.org/3/library/__main__.html#name-main
+
+https://docs.python.org/3/library/stdtypes.html#special-attributes
